@@ -1,6 +1,10 @@
 name: Claude Code • Auto PR on Comment
 
 on:
+  issue_comment:
+    types: [created]
+  schedule:
+    - cron: "0 * * * *" 
   workflow_dispatch: {}
 
 concurrency:
@@ -18,11 +22,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y gh jq 
-      - name: Git auth login 
-        env:
-          GITHUB_TOKEN: ${{ secrets.DOC_FIXING_AGENT_GITHUB_TOKEN }}
-        run: |
-          gh auth login --with-token <<< "$GITHUB_TOKEN"
 
       - name: Get the Oldest Issue with AI-Agent/Queued label
         id: get_oldest_queued
