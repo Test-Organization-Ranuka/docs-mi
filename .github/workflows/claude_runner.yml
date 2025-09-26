@@ -19,6 +19,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y gh jq 
       - name: Git auth login 
+        env:
+          GITHUB_TOKEN: ${{ secrets.DOC_FIXING_AGENT_GITHUB_TOKEN }}
         run: |
           echo "${GITHUB_TOKEN}" | gh auth login --with-token
 
