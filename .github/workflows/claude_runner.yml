@@ -22,7 +22,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.DOC_FIXING_AGENT_GITHUB_TOKEN }}
         run: |
-          echo "${GITHUB_TOKEN}" | gh auth login --with-token
+          gh auth login --with-token <<< "$GITHUB_TOKEN"
 
       - name: Get the Oldest Issue with AI-Agent/Queued label
         id: get_oldest_queued
